@@ -25,7 +25,7 @@ if [ ! -d "${LOGODIR}" ]; then
     exit 1
 fi
 
-SCHEMA=$(realpath "${REPO_DIR}/schemas/metadata.schema.json")
+SCHEMA="${REPO_DIR}/public/schemas/metadata.schema.json"
 if [ ! -f "${SCHEMA}" ]; then
     echo "ERROR: schema not found: ${SCHEMA}"
     exit 1
@@ -34,7 +34,7 @@ fi
 echo "INFO: starting at $(date -u +%Y-%m-%dT%H:%M:%SZ)"
 
 SOCIALKEYS=$(cat "${REPO_DIR}/src/data/socialmedia.yaml" | yq '[.[].id] | join(",")')
-OPTIONALKEYS="colors,font,guide,images,keywords,noindex,other,redirect_from,tags"
+OPTIONALKEYS="colors,font,guide,images,keywords,noindex,other,redirect_from,resource,tags,timestamp,type"
 REQUIREDKEYS="logohandle,sort,title,website"
 
 fflint frontmatter \
